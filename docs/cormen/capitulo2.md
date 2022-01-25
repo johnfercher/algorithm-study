@@ -11,4 +11,4 @@ de vértices e arestas.
 
 ## 2.3 - Projeto de Algoritmos
 ### 2.1.1 - Abordagem Divisão e Conquista
-KEEP pagina 35
+KEEP pagina 36

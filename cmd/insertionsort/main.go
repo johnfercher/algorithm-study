@@ -1,5 +1,9 @@
 package main
 
+/*
+	O(n^2)
+*/
+
 import "fmt"
 
 func main() {
