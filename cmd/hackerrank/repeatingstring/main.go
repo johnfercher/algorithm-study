@@ -17,56 +17,39 @@ import (
  */
 
 func repeatedString(s string, n int64) int64 {
-	if getMultiplier(s, n) == n {
-		return n
+	usefulString := strings.Split(s, "")
+	subStringOccurrences := getSubstringOccurrences(usefulString)
+	multiplier, rest := getMultiplierAndRest(usefulString, n)
+
+	entireOccurrences := subStringOccurrences * multiplier
+
+	for i := 0; i < int(rest); i++ {
+		if usefulString[i] == "a" {
+			entireOccurrences++
+		}
 	}
 
+	return entireOccurrences
+}
+
+func getSubstringOccurrences(s []string) int64 {
 	repeated := int64(0)
-	usefulString := stringNormalizer(s, n)
-
-	fmt.Println(usefulString)
-
-	for _, value := range usefulString {
+	for _, value := range s {
 		if value == "a" {
 			repeated++
 		}
 	}
-
 	return repeated
 }
 
-func stringNormalizer(s string, n int64) []string {
-	usefulString := s
-	if len(s) >= int(n) {
-		usefulString = s[:n]
-		return strings.Split(usefulString, "")
-	}
-
-	return strings.Split(merge(s, s, n), "")
-}
-
-func getMultiplier(subString string, n int64) int64 {
-	return n / int64(len(subString))
-}
-
-func merge(subString string, superSubstring string, n int64) string {
-	if len(superSubstring)*2 > int(n) {
-		remainN := n - int64(len(superSubstring))
-		if remainN < int64(len(subString)) {
-			return subString + subString[:remainN]
-		}
-
-		return superSubstring + merge(subString, subString, remainN)
-	}
-
-	duplicated := superSubstring + superSubstring
-	return merge(subString, duplicated, n)
+func getMultiplierAndRest(subString []string, n int64) (int64, int64) {
+	return n / int64(len(subString)), n % int64(len(subString))
 }
 
 func main() {
 	//result := repeatedString("aba", 10)
-	//result := repeatedString("a", 1000000000000)
-	result := repeatedString("a", 100)
+	result := repeatedString("a", 1000000000000)
+	//result := repeatedString("a", 100)
 	fmt.Println(result)
 }
 
