@@ -1,1 +1,4 @@
-# algorithm-study
+# Algorithm Study
+
+## Anotações
+* [Cormen](docs/cormen.md)
