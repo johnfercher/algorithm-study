@@ -1,6 +1,6 @@
 # 1. O Papel dos Algoritmos na Computação
 
-# 1.1 Algoritmos
+## 1.1 Algoritmos
 
 Um algoritmo é qualquer procedimento computacional que transforma valores de `entrada` em valores de `saída` com base em
 uma sequência de procedimentos computacionais.
