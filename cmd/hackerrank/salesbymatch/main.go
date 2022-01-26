@@ -1,10 +1,7 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
-	"io"
-	"strings"
 )
 
 /*
@@ -39,19 +36,4 @@ func sockMerchant(n int32, ar []int32) int32 {
 func main() {
 	result := sockMerchant(9, []int32{10, 20, 20, 10, 10, 30, 50, 10, 20})
 	fmt.Println(result)
-}
-
-func readLine(reader *bufio.Reader) string {
-	str, _, err := reader.ReadLine()
-	if err == io.EOF {
-		return ""
-	}
-
-	return strings.TrimRight(string(str), "\r\n")
-}
-
-func checkError(err error) {
-	if err != nil {
-		panic(err)
-	}
 }
