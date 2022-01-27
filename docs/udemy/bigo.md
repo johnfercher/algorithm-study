@@ -7,7 +7,7 @@
 | `O(N)`, `Linear`| OK | Procurar um valor em uma lista (incremental) |
 | `O(N log N)`| Ruim | Ordenar um array (merge sort, dividir e conquistar) |
 | `O(N^2)`| Horrivel | Ordenar um array (insert sort, incremental). Todos os elementos precisam ser comparados |
-| `O(2^N)`| Horrivel | Algoritmos recursivos que resolvem problemas N |
+| `O(2^N)`| Horrivel |  Algoritmos recursivos que resolvem problemas N |
 | `O(N!)`| Horrivel | Um loop para cada elemento |
 
 * Não se diferencia `O(1)` e `O(42)`. Sempre é mostrado c `O(1)` não importando o valor da unidade. 
