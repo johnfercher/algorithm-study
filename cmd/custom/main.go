@@ -1,19 +1,19 @@
 package main
 
 import (
-	"crypto/rand"
-	"custom/domain"
+	"algorithm-study/internal/domain"
+	"algorithm-study/internal/generate"
+	"algorithm-study/internal/sort"
 	"errors"
 	"fmt"
-	"math"
-	"math/big"
 )
 
 func main() {
-	size := 160
+	size := 10
+	maxValue := 200
 	idToFind := 169
 
-	unsortedArray := initUnsortedArrayWithWorstCase(size, idToFind)
+	unsortedArray := generate.UnsortedObjectArrayWithWorstCase(size, maxValue, idToFind)
 
 	// First Solution
 	unSortedSolution(unsortedArray, idToFind)
@@ -40,7 +40,7 @@ func unSortedSolution(unsortedArray domain.Objects, idToFind int) {
 func insertSortedSolution(unsortedArray domain.Objects, idToFind int) {
 	sortCounter := domain.NewCounter("insertion sort")
 	findCounter := domain.NewCounter("find")
-	sortedArray := insertionSort(unsortedArray, sortCounter)
+	sortedArray := sort.InsertObject(unsortedArray, sortCounter)
 	objectSorted, err := findIndexOfSorted(sortedArray, idToFind, findCounter)
 	if err != nil {
 		fmt.Println(err.Error())
@@ -55,7 +55,7 @@ func insertSortedSolution(unsortedArray domain.Objects, idToFind int) {
 func mergeSortedSolution(unsortedArray domain.Objects, idToFind int) {
 	sortCounter := domain.NewCounter("merge sort")
 	findCounter := domain.NewCounter("find")
-	sortedArray := mergeSort(unsortedArray, sortCounter)
+	sortedArray := sort.MergeObject(unsortedArray, sortCounter)
 	objectSorted, err := findIndexOfSorted(sortedArray, idToFind, findCounter)
 	if err != nil {
 		fmt.Println(err.Error())
@@ -95,91 +95,4 @@ func findUnsorted(arr domain.Objects, id int, opCounter *domain.Counter) (*domai
 	}
 
 	return nil, errors.New(fmt.Sprintf("%d not found", id))
-}
-
-func insertionSort(arr domain.Objects, counter *domain.Counter) domain.Objects {
-	for i := 0; i < len(arr); i++ {
-		for j := i; j > 0; j-- {
-			counter.Add()
-			if arr[j].ID < arr[j-1].ID {
-				arr[j], arr[j-1] = arr[j-1], arr[j]
-			}
-		}
-	}
-
-	return arr
-}
-
-func mergeSort(arr domain.Objects, counter *domain.Counter) domain.Objects {
-	if len(arr) < 2 {
-		return arr
-	}
-
-	aUnsorted := arr[:len(arr)/2]
-	bUnsorted := arr[len(arr)/2:]
-
-	aSorted := mergeSort(aUnsorted, counter)
-	bSorted := mergeSort(bUnsorted, counter)
-
-	return merge(aSorted, bSorted, counter)
-}
-
-func merge(a domain.Objects, b domain.Objects, counter *domain.Counter) domain.Objects {
-	var final domain.Objects
-	i := 0
-	j := 0
-
-	for i < len(a) && j < len(b) {
-		counter.Add()
-		if a[i].ID < b[j].ID {
-			final = append(final, a[i])
-			i++
-		} else {
-			final = append(final, b[j])
-			j++
-		}
-	}
-
-	for ; i < len(a); i++ {
-		counter.Add()
-		final = append(final, a[i])
-	}
-
-	for ; j < len(b); j++ {
-		counter.Add()
-		final = append(final, b[j])
-	}
-
-	return final
-}
-
-func initUnsortedArrayWithWorstCase(size int, rightID int) domain.Objects {
-	var arr domain.Objects
-	for i := 0; i < size-1; i++ {
-		arr = append(arr, generateRandomObject(math.MaxInt8, rightID))
-	}
-
-	arr = append(arr, &domain.Object{
-		ID:   rightID,
-		Name: "right",
-	})
-
-	return arr
-}
-
-func generateRandomObject(max, avoidID int) *domain.Object {
-	randomNumber, _ := rand.Int(rand.Reader, big.NewInt(int64(max)))
-	randNumber := int(randomNumber.Int64())
-
-	if randNumber == avoidID {
-		return &domain.Object{
-			ID:   avoidID + 1,
-			Name: "wrong",
-		}
-	}
-
-	return &domain.Object{
-		ID:   randNumber,
-		Name: "wrong",
-	}
 }
