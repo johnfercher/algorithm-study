@@ -161,7 +161,7 @@ func initUnsortedArrayWithWorstCase(size int, rightID int) domain.Objects {
 
 	arr = append(arr, &domain.Object{
 		ID:   rightID,
-		Name: "wrong",
+		Name: "right",
 	})
 
 	return arr
