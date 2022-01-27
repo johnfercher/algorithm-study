@@ -14,10 +14,10 @@ func NewCounter(label string) *Counter {
 	}
 }
 
-func (s *Counter) Add() {
+func (s *Counter) Increment() {
 	s.qtd++
 }
 
 func (s *Counter) Print() {
-	fmt.Printf("%s counter: %d\n", s.label, s.qtd)
+	fmt.Printf("%s counter: %d\n\n", s.label, s.qtd)
 }

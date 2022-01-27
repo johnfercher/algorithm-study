@@ -68,7 +68,7 @@ func mergeSortedSolution(unsortedArray domain.Objects, idToFind int) {
 }
 
 func findIndexOfSorted(arr domain.Objects, id int, counter *domain.Counter) (*domain.Object, error) {
-	counter.Add()
+	counter.Increment()
 	middlePosition := len(arr) / 2
 	if id == arr[middlePosition].ID {
 		return arr[middlePosition], nil
@@ -87,7 +87,7 @@ func findIndexOfSorted(arr domain.Objects, id int, counter *domain.Counter) (*do
 
 func findUnsorted(arr domain.Objects, id int, opCounter *domain.Counter) (*domain.Object, error) {
 	for i := 0; i < len(arr); i++ {
-		opCounter.Add()
+		opCounter.Increment()
 
 		if arr[i].ID == id {
 			return arr[i], nil

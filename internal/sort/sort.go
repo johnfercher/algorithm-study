@@ -8,7 +8,7 @@ import (
 func InsertObject(arr domain.Objects, counter *domain.Counter) domain.Objects {
 	for i := 0; i < len(arr); i++ {
 		for j := i; j > 0; j-- {
-			counter.Add()
+			counter.Increment()
 			if arr[j].ID < arr[j-1].ID {
 				arr[j], arr[j-1] = arr[j-1], arr[j]
 			}
@@ -39,7 +39,7 @@ func mergeIntArray(a []int, b []int, counter *domain.Counter) []int {
 	j := 0
 
 	for i < len(a) && j < len(b) {
-		counter.Add()
+		counter.Increment()
 		if a[i] < b[j] {
 			final = append(final, a[i])
 			i++
@@ -50,12 +50,12 @@ func mergeIntArray(a []int, b []int, counter *domain.Counter) []int {
 	}
 
 	for ; i < len(a); i++ {
-		counter.Add()
+		counter.Increment()
 		final = append(final, a[i])
 	}
 
 	for ; j < len(b); j++ {
-		counter.Add()
+		counter.Increment()
 		final = append(final, b[j])
 	}
 
@@ -82,7 +82,7 @@ func mergeObjectArray(a domain.Objects, b domain.Objects, counter *domain.Counte
 	j := 0
 
 	for i < len(a) && j < len(b) {
-		counter.Add()
+		counter.Increment()
 		if a[i].ID < b[j].ID {
 			final = append(final, a[i])
 			i++
@@ -93,12 +93,12 @@ func mergeObjectArray(a domain.Objects, b domain.Objects, counter *domain.Counte
 	}
 
 	for ; i < len(a); i++ {
-		counter.Add()
+		counter.Increment()
 		final = append(final, a[i])
 	}
 
 	for ; j < len(b); j++ {
-		counter.Add()
+		counter.Increment()
 		final = append(final, b[j])
 	}
 
