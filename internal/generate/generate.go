@@ -35,6 +35,18 @@ func RandomIntAvoidingNumber(max, avoidID int) int {
 }
 
 func RandomInt(max int) int {
+	number, _ := rand.Int(rand.Reader, big.NewInt(int64(max)))
+	n := int(number.Int64())
+
+	negativeFactor, _ := rand.Int(rand.Reader, big.NewInt(int64(max)))
+	if int(negativeFactor.Int64())%2 == 0 {
+		return n * -1
+	}
+
+	return n
+}
+
+func RandomPositiveInt(max int) int {
 	randomNumber, _ := rand.Int(rand.Reader, big.NewInt(int64(max)))
 	randNumber := int(randomNumber.Int64())
 
@@ -62,6 +74,15 @@ func UnsortedIntArrayWithWorstCase(size int, maxValue int, number int) []int {
 	}
 
 	arr = append(arr, number)
+
+	return arr
+}
+
+func UnsortedPositiveIntArray(size int, maxValue int) []int {
+	var arr []int
+	for i := 0; i < size; i++ {
+		arr = append(arr, RandomPositiveInt(maxValue))
+	}
 
 	return arr
 }
