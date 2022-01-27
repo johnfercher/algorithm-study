@@ -12,7 +12,7 @@
 
 * Não se diferencia `O(1)` e `O(42)`. Sempre é mostrado c `O(1)` não importando o valor da unidade. 
 
-## Calculando Big O
+## Calculando Big O (Time Complexity)
   
 3. Diferentes termos de entrada
 4. Ignorar não dominantes
@@ -176,3 +176,28 @@ func fun(arr []int) {
 1. `Big O = [O(n) * O(n)] + O(n)`
 2. `Big O = O(n^2)+ O(n)`
 3. `Big O(n^2)` (Utilizando somente n^2, pois o crescimento é muito maior do que n)
+
+## Complexidade de Espaço
+
+`BigO` pode ser utilizado para definir o custo de memória, em geral diferentes estruturas de dados podem possuir diferentes
+custos de memória de de tempo. Em geral, há uma competição entre ambos: estruturas que ajudam na rapidez gastam mais memória e
+estruturas que focam em ocupar menos espaço oneram a velocidade.
+
+## Calculando Big O (Space Complexity)
+
+### Variáveis consomem espaço
+```golang
+func fun(arr []int) {
+	a := len(arr) // O(1)
+}
+```
+
+### Estruturas de dados consomem espaço
+```golang
+func fun(qtd int) {
+	arr := []int{}
+	for i := 0 ; i < qtd ; i++ { 
+		arr = append(arr, i) // O(n)
+	}
+}
+```
