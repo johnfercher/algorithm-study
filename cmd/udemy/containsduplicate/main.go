@@ -25,7 +25,7 @@ func main() {
 	// Unsorted -> Time: O(n), Space: O(n)
 	{
 		fmt.Println(arr)
-		counter := domain.NewCounter("unsorted o(n^2)")
+		counter := domain.NewCounter("unsorted o(n)")
 		i, j, has := HasDuplicatedDynamicLinearUnsorted(arr, counter)
 		fmt.Println(i, j, has)
 		counter.Print()
