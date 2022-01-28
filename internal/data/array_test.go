@@ -9,7 +9,7 @@ import (
 
 func TestNew(t *testing.T) {
 	// Act
-	sut := data.NewArray()
+	sut := data.NewIntArray()
 
 	// Assert
 	assert.NotNil(t, sut)
@@ -19,7 +19,7 @@ func TestNew(t *testing.T) {
 
 func TestIntArray_Push(t *testing.T) {
 	// Arrange
-	sut := data.NewArray()
+	sut := data.NewIntArray()
 
 	// Act
 	sut.Push(0)
@@ -32,7 +32,7 @@ func TestIntArray_Push(t *testing.T) {
 
 func TestIntArray_PushFront(t *testing.T) {
 	// Arrange
-	sut := data.NewArray()
+	sut := data.NewIntArray()
 
 	// Act
 	sut.Push(0)
@@ -45,7 +45,7 @@ func TestIntArray_PushFront(t *testing.T) {
 
 func TestIntArray_Pop(t *testing.T) {
 	// Arrange
-	sut := data.NewArray()
+	sut := data.NewIntArray()
 
 	// Act
 	sut.Push(0)
@@ -61,7 +61,7 @@ func TestIntArray_Pop(t *testing.T) {
 
 func TestIntArray_PopFront(t *testing.T) {
 	// Arrange
-	sut := data.NewArray()
+	sut := data.NewIntArray()
 
 	// Act
 	sut.Push(10)

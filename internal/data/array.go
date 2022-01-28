@@ -7,7 +7,7 @@ type IntArray struct {
 	data   []int
 }
 
-func NewArray() *IntArray {
+func NewIntArray() *IntArray {
 	return &IntArray{}
 }
 
