@@ -8,7 +8,7 @@ import (
 
 func TestNewIntLinkedList(t *testing.T) {
 	// Act
-	sut := data.NewIntLinkedList()
+	sut := data.NewSingleIntLinkedList()
 
 	// Assert
 	assert.NotNil(t, sut)
@@ -17,7 +17,7 @@ func TestNewIntLinkedList(t *testing.T) {
 
 func TestIntLinkedList_PushFront(t *testing.T) {
 	// Arrange
-	sut := data.NewIntLinkedList()
+	sut := data.NewSingleIntLinkedList()
 
 	// Act
 	sut.PushFront(0)
@@ -36,7 +36,7 @@ func TestIntLinkedList_PushFront(t *testing.T) {
 
 func TestIntLinkedList_PopFront(t *testing.T) {
 	// Arrange
-	sut := data.NewIntLinkedList()
+	sut := data.NewSingleIntLinkedList()
 
 	sut.PushFront(0)
 	sut.PushFront(1)
@@ -56,7 +56,7 @@ func TestIntLinkedList_PopFront(t *testing.T) {
 
 func TestIntLinkedList_Tail(t *testing.T) {
 	// Arrange
-	sut := data.NewIntLinkedList()
+	sut := data.NewSingleIntLinkedList()
 
 	// Act & Assert
 	value, ok := sut.Tail()
@@ -86,7 +86,7 @@ func TestIntLinkedList_Tail(t *testing.T) {
 
 func TestIntLinkedList_Head(t *testing.T) {
 	// Arrange
-	sut := data.NewIntLinkedList()
+	sut := data.NewSingleIntLinkedList()
 
 	// Act & Assert
 	value, ok := sut.Head()
@@ -116,7 +116,7 @@ func TestIntLinkedList_Head(t *testing.T) {
 
 func TestIntLinkedList_PushBack(t *testing.T) {
 	// Arrange
-	sut := data.NewIntLinkedList()
+	sut := data.NewSingleIntLinkedList()
 
 	// Act & Assert
 	value, ok := sut.Tail()
@@ -141,7 +141,7 @@ func TestIntLinkedList_PushBack(t *testing.T) {
 
 func TestIntLinkedList_PushAt(t *testing.T) {
 	// Arrange
-	sut := data.NewIntLinkedList()
+	sut := data.NewSingleIntLinkedList()
 
 	// Act & Assert
 	value, ok := sut.Tail()
@@ -171,7 +171,7 @@ func TestIntLinkedList_PushAt(t *testing.T) {
 
 func TestIntLinkedList_At(t *testing.T) {
 	// Arrange
-	sut := data.NewIntLinkedList()
+	sut := data.NewSingleIntLinkedList()
 
 	sut.PushBack(1)
 	sut.PushBack(2)
@@ -197,7 +197,7 @@ func TestIntLinkedList_At(t *testing.T) {
 
 func TestIntLinkedList_PopBack(t *testing.T) {
 	// Arrange
-	sut := data.NewIntLinkedList()
+	sut := data.NewSingleIntLinkedList()
 
 	sut.PushFront(0)
 	sut.PushFront(1)
@@ -217,7 +217,7 @@ func TestIntLinkedList_PopBack(t *testing.T) {
 
 func TestIntLinkedList_PopAtBack(t *testing.T) {
 	// Arrange
-	sut := data.NewIntLinkedList()
+	sut := data.NewSingleIntLinkedList()
 
 	sut.PushFront(0)
 	sut.PushFront(1)

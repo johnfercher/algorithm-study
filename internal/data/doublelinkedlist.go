@@ -2,69 +2,80 @@ package data
 
 import "fmt"
 
-type IntNode struct {
-	value int
-	next  *IntNode
+type IntDoubleNode struct {
+	value  int
+	next   *IntDoubleNode
+	before *IntDoubleNode
 }
 
-func NewIntNode(value int, next *IntNode) *IntNode {
-	return &IntNode{
-		value: value,
-		next:  next,
+func NewDoubleIntNode(value int, next *IntDoubleNode, before *IntDoubleNode) *IntDoubleNode {
+	return &IntDoubleNode{
+		value:  value,
+		next:   next,
+		before: before,
 	}
 }
 
-func (s *IntNode) Print() {
+func (s *IntDoubleNode) PrintForward() {
 	fmt.Printf("(%d) -> ", s.value)
 	if s.next != nil {
-		s.next.Print()
+		s.next.PrintForward()
 	} else {
 		fmt.Println("NULL")
 	}
 }
 
-type IntLinkedList struct {
-	length int
-	head   *IntNode
-	tail   *IntNode
+func (s *IntDoubleNode) PrintBackward() {
+	fmt.Printf("(%d) -> ", s.value)
+	if s.before != nil {
+		s.before.PrintBackward()
+	} else {
+		fmt.Println("NULL")
+	}
 }
 
-func NewIntLinkedList() *IntLinkedList {
-	return &IntLinkedList{
+type IntDoubleLinkedList struct {
+	length int
+	head   *IntDoubleNode
+	tail   *IntDoubleNode
+}
+
+func NewDoubleIntLinkedList() *IntDoubleLinkedList {
+	return &IntDoubleLinkedList{
 		length: 0,
 		head:   nil,
 		tail:   nil,
 	}
 }
 
-func (s *IntLinkedList) PushFront(value int) {
+func (s *IntDoubleLinkedList) PushFront(value int) {
 	s.length++
 
 	if s.head == nil {
-		s.head = NewIntNode(value, nil)
+		s.head = NewDoubleIntNode(value, nil, nil)
 		s.tail = s.head
 		return
 	}
 
 	oldHead := *s.head
-	s.head = NewIntNode(value, &oldHead)
+	s.head = NewDoubleIntNode(value, &oldHead)
 }
 
-func (s *IntLinkedList) PushBack(value int) {
+func (s *IntDoubleLinkedList) PushBack(value int) {
 	s.length++
 
 	if s.tail == nil {
-		s.tail = NewIntNode(value, nil)
+		s.tail = NewSingleIntNode(value, nil)
 		s.head = s.tail
 		return
 	}
 
-	newTail := NewIntNode(value, nil)
+	newTail := NewSingleIntNode(value, nil)
 	s.tail.next = newTail
 	s.tail = newTail
 }
 
-func (s *IntLinkedList) PushAt(value int, position int) {
+func (s *IntDoubleLinkedList) PushAt(value int, position int) {
 	if position > s.length {
 		return
 	}
@@ -80,7 +91,7 @@ func (s *IntLinkedList) PushAt(value int, position int) {
 	}
 
 	s.length++
-	nodeToAdd := &IntNode{
+	nodeToAdd := &IntSingleNode{
 		value: value,
 	}
 
@@ -94,7 +105,7 @@ func (s *IntLinkedList) PushAt(value int, position int) {
 	return
 }
 
-func (s *IntLinkedList) PopFront() (int, bool) {
+func (s *IntDoubleLinkedList) PopFront() (int, bool) {
 	if s.length == 0 {
 		return 0, false
 	}
@@ -118,11 +129,11 @@ func (s *IntLinkedList) PopFront() (int, bool) {
 	return popedValue, true
 }
 
-func (s *IntLinkedList) PopBack() (int, bool) {
+func (s *IntDoubleLinkedList) PopBack() (int, bool) {
 	return s.PopAt(s.length - 1)
 }
 
-func (s *IntLinkedList) PopAt(position int) (int, bool) {
+func (s *IntDoubleLinkedList) PopAt(position int) (int, bool) {
 	if s.length == 0 {
 		return 0, false
 	}
@@ -143,7 +154,7 @@ func (s *IntLinkedList) PopAt(position int) (int, bool) {
 	return value, true
 }
 
-func (s *IntLinkedList) At(position int) (int, bool) {
+func (s *IntDoubleLinkedList) At(position int) (int, bool) {
 	node, ok := s.transverseUntil(position)
 	if !ok {
 		return 0, false
@@ -152,11 +163,11 @@ func (s *IntLinkedList) At(position int) (int, bool) {
 	return node.value, true
 }
 
-func (s *IntLinkedList) Length() int {
+func (s *IntDoubleLinkedList) Length() int {
 	return s.length
 }
 
-func (s *IntLinkedList) Tail() (int, bool) {
+func (s *IntDoubleLinkedList) Tail() (int, bool) {
 	if s.length == 0 {
 		return 0, false
 	}
@@ -164,7 +175,7 @@ func (s *IntLinkedList) Tail() (int, bool) {
 	return s.tail.value, true
 }
 
-func (s *IntLinkedList) Head() (int, bool) {
+func (s *IntDoubleLinkedList) Head() (int, bool) {
 	if s.length == 0 {
 		return 0, false
 	}
@@ -172,13 +183,13 @@ func (s *IntLinkedList) Head() (int, bool) {
 	return s.head.value, true
 }
 
-func (s *IntLinkedList) Print() {
+func (s *IntDoubleLinkedList) Print() {
 	if s.head != nil {
 		s.head.Print()
 	}
 }
 
-func (s *IntLinkedList) transverseUntil(position int) (*IntNode, bool) {
+func (s *IntDoubleLinkedList) transverseUntil(position int) (*IntDoubleNode, bool) {
 	i := 0
 	iteratorNode := s.head
 
