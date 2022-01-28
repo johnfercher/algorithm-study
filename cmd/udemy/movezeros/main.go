@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	size := 50
+	size := 70
 	maxValue := 5
 
 	arr := generate.UnsortedIntArray(size, maxValue)
@@ -24,20 +24,16 @@ func moveZeros(arr []int) []int {
 	}
 
 	j := len(notZerosIndex) - 1 // star iteration from last element in not zero number array
-	zerosQtd := len(arr) - len(notZerosIndex)
-	zerosSwapped := 0
 
 	for i := 0; i < len(arr); i++ {
-		// if all zeros was swapped at least one time
-		// necessary to avoid re-swap
-		if zerosSwapped >= zerosQtd {
+		// break if current iteration pass swapped value index (to not re-swap elements)
+		if i >= notZerosIndex[j] {
 			break
 		}
 
 		if arr[i] == 0 {
 			arr[i], arr[notZerosIndex[j]] = arr[notZerosIndex[j]], arr[i] // swap based on not zero number array index
 			j--                                                           // decrement zero number array index
-			zerosSwapped++                                                // increment zeros swapped
 		}
 	}
 
