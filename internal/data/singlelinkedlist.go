@@ -39,11 +39,11 @@ func NewSingleIntLinkedList() *IntSingleLinkedList {
 
 func (s *IntSingleLinkedList) PushFront(value int) {
 	s.length++
-	wasHeadNil := s.head == nil
+	headWasNil := s.head == nil
 
 	s.head = NewSingleIntNode(value, s.head)
 
-	if wasHeadNil {
+	if headWasNil {
 		s.tail = s.head
 	}
 }
@@ -117,7 +117,7 @@ func (s *IntSingleLinkedList) PopAt(position int) (int, bool) {
 		return 0, false
 	}
 
-	if s.length == 1 {
+	if s.length == 1 || position == 0 {
 		return s.PopFront()
 	}
 
@@ -128,7 +128,8 @@ func (s *IntSingleLinkedList) PopAt(position int) (int, bool) {
 
 	s.length--
 	value := node.next.value
-	node.next = nil
+
+	node.next = node.next.next
 
 	return value, true
 }
