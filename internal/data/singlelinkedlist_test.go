@@ -453,3 +453,42 @@ func TestSingleIntLinkedList_At(t *testing.T) {
 	assert.False(t, ok)
 	assert.Zero(t, value)
 }
+
+func TestIntSingleLinkedList_Reverse(t *testing.T) {
+	// Arrange
+	sut := data.NewSingleIntLinkedList()
+
+	sut.PushBack(1)
+	sut.PushBack(2)
+	sut.PushBack(3)
+
+	value := 0
+	ok := true
+
+	// Act
+	sut.Reverse()
+
+	// Head & TAil
+	value, ok = sut.Head()
+	assert.Equal(t, 3, value)
+	assert.True(t, ok)
+
+	value, ok = sut.Tail()
+	assert.Equal(t, 1, value)
+	assert.True(t, ok)
+
+	// Position 0
+	value, ok = sut.At(0)
+	assert.Equal(t, 3, value)
+	assert.True(t, ok)
+
+	// Position 1
+	value, ok = sut.At(1)
+	assert.Equal(t, 2, value)
+	assert.True(t, ok)
+
+	// Position 2
+	value, ok = sut.At(2)
+	assert.Equal(t, 1, value)
+	assert.True(t, ok)
+}

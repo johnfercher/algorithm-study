@@ -143,6 +143,27 @@ func (s *IntSingleLinkedList) At(position int) (int, bool) {
 	return node.value, true
 }
 
+func (s *IntSingleLinkedList) Reverse() {
+	var arrAux []*IntSingleNode
+
+	node := s.head
+	for node != nil {
+		arrAux = append(arrAux, node)
+		node = node.next
+	}
+
+	s.head = arrAux[len(arrAux)-1]
+	s.tail = arrAux[0]
+	s.tail.next = nil
+
+	node = s.head
+	for i := len(arrAux) - 2; i >= 0; i-- {
+		nextNode := arrAux[i]
+		node.next = nextNode
+		node = nextNode
+	}
+}
+
 func (s *IntSingleLinkedList) Length() int {
 	return s.length
 }
