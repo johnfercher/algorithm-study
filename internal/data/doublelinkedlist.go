@@ -57,20 +57,23 @@ func (s *IntDoubleLinkedList) PushFront(value int) {
 		return
 	}
 
-	oldHead := *s.head
-	s.head = NewDoubleIntNode(value, &oldHead)
+	oldHead := s.head
+	newHead := NewDoubleIntNode(value, oldHead, nil)
+	oldHead.before = newHead
+
+	s.head = newHead
 }
 
 func (s *IntDoubleLinkedList) PushBack(value int) {
 	s.length++
 
 	if s.tail == nil {
-		s.tail = NewSingleIntNode(value, nil)
+		s.tail = NewDoubleIntNode(value, nil, nil)
 		s.head = s.tail
 		return
 	}
 
-	newTail := NewSingleIntNode(value, nil)
+	newTail := NewDoubleIntNode(value, nil, s.tail)
 	s.tail.next = newTail
 	s.tail = newTail
 }
@@ -85,13 +88,13 @@ func (s *IntDoubleLinkedList) PushAt(value int, position int) {
 		return
 	}
 
-	if position == s.length {
+	if position == s.length-1 {
 		s.PushBack(value)
 		return
 	}
 
 	s.length++
-	nodeToAdd := &IntSingleNode{
+	nodeToAdd := &IntDoubleNode{
 		value: value,
 	}
 
@@ -100,8 +103,12 @@ func (s *IntDoubleLinkedList) PushAt(value int, position int) {
 		return
 	}
 
-	nodeToAdd.next = node.next
-	node.next = nodeToAdd
+	nodeToAdd.next = node
+	nodeToAdd.before = node.before
+
+	node.before.next = nodeToAdd
+	node.before = nodeToAdd
+
 	return
 }
 
@@ -113,24 +120,34 @@ func (s *IntDoubleLinkedList) PopFront() (int, bool) {
 	s.length--
 	popedValue := s.head.value
 
-	if s.length != 0 {
-		newHead := *s.head.next
-		s.head = &newHead
+	newHead := s.head.next
+	newHead.before = nil
+	s.head = newHead
 
-		if s.length == 1 {
-			s.tail = s.head
-		}
-
-		return popedValue, true
+	if s.length == 1 {
+		s.tail = s.head
 	}
 
-	s.head = nil
-	s.tail = nil
 	return popedValue, true
 }
 
 func (s *IntDoubleLinkedList) PopBack() (int, bool) {
-	return s.PopAt(s.length - 1)
+	if s.length == 0 {
+		return 0, false
+	}
+
+	s.length--
+	popedValue := s.tail.value
+
+	newTail := s.tail.before
+	newTail.next = nil
+	s.tail = newTail
+
+	if s.length == 1 {
+		s.tail = s.head
+	}
+
+	return popedValue, true
 }
 
 func (s *IntDoubleLinkedList) PopAt(position int) (int, bool) {
@@ -140,6 +157,14 @@ func (s *IntDoubleLinkedList) PopAt(position int) (int, bool) {
 
 	if s.length == 1 {
 		return s.PopFront()
+	}
+
+	if position == 0 {
+		return s.PopFront()
+	}
+
+	if position == s.length-1 {
+		return s.PopBack()
 	}
 
 	node, ok := s.transverseUntil(position - 1)
@@ -183,13 +208,33 @@ func (s *IntDoubleLinkedList) Head() (int, bool) {
 	return s.head.value, true
 }
 
-func (s *IntDoubleLinkedList) Print() {
+func (s *IntDoubleLinkedList) PrintForward() {
+	fmt.Printf("Forward: ")
 	if s.head != nil {
-		s.head.Print()
+		s.head.PrintForward()
+	}
+}
+
+func (s *IntDoubleLinkedList) PrintBackward() {
+	fmt.Printf("Backward: ")
+	if s.tail != nil {
+		s.tail.PrintBackward()
 	}
 }
 
 func (s *IntDoubleLinkedList) transverseUntil(position int) (*IntDoubleNode, bool) {
+	if s.length <= 3 {
+		return s.forwardTransverseUntil(position)
+	}
+
+	if position <= s.length/2 {
+		return s.forwardTransverseUntil(position)
+	}
+
+	return s.backwardTransverseUntil(position)
+}
+
+func (s *IntDoubleLinkedList) forwardTransverseUntil(position int) (*IntDoubleNode, bool) {
 	i := 0
 	iteratorNode := s.head
 
@@ -203,6 +248,27 @@ func (s *IntDoubleLinkedList) transverseUntil(position int) (*IntDoubleNode, boo
 		}
 
 		iteratorNode = iteratorNode.next
+		i++
+	}
+
+	return nil, false
+}
+
+func (s *IntDoubleLinkedList) backwardTransverseUntil(position int) (*IntDoubleNode, bool) {
+	inversePosition := s.length - 1 - position
+	i := 0
+	iteratorNode := s.tail
+
+	for i < s.length {
+		if iteratorNode == nil {
+			return nil, false
+		}
+
+		if i == inversePosition {
+			return iteratorNode, true
+		}
+
+		iteratorNode = iteratorNode.before
 		i++
 	}
 

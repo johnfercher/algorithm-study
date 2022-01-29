@@ -6,7 +6,7 @@ import (
 	"testing"
 )
 
-func TestNewIntLinkedList(t *testing.T) {
+func TestNewSingleIntLinkedList(t *testing.T) {
 	// Act
 	sut := data.NewSingleIntLinkedList()
 
@@ -15,7 +15,7 @@ func TestNewIntLinkedList(t *testing.T) {
 	assert.Equal(t, 0, sut.Length())
 }
 
-func TestIntLinkedList_PushFront(t *testing.T) {
+func TestSingleIntLinkedList_PushFront(t *testing.T) {
 	// Arrange
 	sut := data.NewSingleIntLinkedList()
 
@@ -34,7 +34,7 @@ func TestIntLinkedList_PushFront(t *testing.T) {
 	assert.Equal(t, 0, value)
 }
 
-func TestIntLinkedList_PopFront(t *testing.T) {
+func TestSingleIntLinkedList_PopFront(t *testing.T) {
 	// Arrange
 	sut := data.NewSingleIntLinkedList()
 
@@ -54,7 +54,7 @@ func TestIntLinkedList_PopFront(t *testing.T) {
 	assert.False(t, ok)
 }
 
-func TestIntLinkedList_Tail(t *testing.T) {
+func TestSingleIntLinkedList_Tail(t *testing.T) {
 	// Arrange
 	sut := data.NewSingleIntLinkedList()
 
@@ -84,7 +84,7 @@ func TestIntLinkedList_Tail(t *testing.T) {
 	assert.Zero(t, value)
 }
 
-func TestIntLinkedList_Head(t *testing.T) {
+func TestSingleIntLinkedList_Head(t *testing.T) {
 	// Arrange
 	sut := data.NewSingleIntLinkedList()
 
@@ -114,7 +114,7 @@ func TestIntLinkedList_Head(t *testing.T) {
 	assert.Zero(t, value)
 }
 
-func TestIntLinkedList_PushBack(t *testing.T) {
+func TestSingleIntLinkedList_PushBack(t *testing.T) {
 	// Arrange
 	sut := data.NewSingleIntLinkedList()
 
@@ -139,7 +139,7 @@ func TestIntLinkedList_PushBack(t *testing.T) {
 	assert.Equal(t, 3, value)
 }
 
-func TestIntLinkedList_PushAt(t *testing.T) {
+func TestSingleIntLinkedList_PushAt(t *testing.T) {
 	// Arrange
 	sut := data.NewSingleIntLinkedList()
 
@@ -169,7 +169,7 @@ func TestIntLinkedList_PushAt(t *testing.T) {
 	assert.Equal(t, 3, value)
 }
 
-func TestIntLinkedList_At(t *testing.T) {
+func TestSingleIntLinkedList_At(t *testing.T) {
 	// Arrange
 	sut := data.NewSingleIntLinkedList()
 
@@ -195,7 +195,7 @@ func TestIntLinkedList_At(t *testing.T) {
 	assert.Equal(t, 0, value)
 }
 
-func TestIntLinkedList_PopBack(t *testing.T) {
+func TestSingleIntLinkedList_PopBack(t *testing.T) {
 	// Arrange
 	sut := data.NewSingleIntLinkedList()
 
@@ -215,7 +215,7 @@ func TestIntLinkedList_PopBack(t *testing.T) {
 	assert.False(t, ok)
 }
 
-func TestIntLinkedList_PopAtBack(t *testing.T) {
+func TestSingleIntLinkedList_PopAtBack(t *testing.T) {
 	// Arrange
 	sut := data.NewSingleIntLinkedList()
 
