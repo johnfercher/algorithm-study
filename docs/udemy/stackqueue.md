@@ -1,5 +1,7 @@
 # Stacks & Queues
 
+* Versões limitadas de Linked List com intuito de serem simples e rapidas;
+
 ## Stacks
 * LIFO (Last In First Out)
 * Não há a necessidade de manter um `tail` computado, pois não existem operações feitas direto no primeiro elemento
