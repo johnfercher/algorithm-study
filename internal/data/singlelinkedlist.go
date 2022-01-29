@@ -39,15 +39,13 @@ func NewSingleIntLinkedList() *IntSingleLinkedList {
 
 func (s *IntSingleLinkedList) PushFront(value int) {
 	s.length++
+	wasHeadNil := s.head == nil
 
-	if s.head == nil {
-		s.head = NewSingleIntNode(value, nil)
+	s.head = NewSingleIntNode(value, s.head)
+
+	if wasHeadNil {
 		s.tail = s.head
-		return
 	}
-
-	oldHead := *s.head
-	s.head = NewSingleIntNode(value, &oldHead)
 }
 
 func (s *IntSingleLinkedList) PushBack(value int) {
@@ -59,9 +57,8 @@ func (s *IntSingleLinkedList) PushBack(value int) {
 		return
 	}
 
-	newTail := NewSingleIntNode(value, nil)
-	s.tail.next = newTail
-	s.tail = newTail
+	s.tail.next = NewSingleIntNode(value, nil)
+	s.tail = s.tail.next
 }
 
 func (s *IntSingleLinkedList) PushAt(value int, position int) {
@@ -74,7 +71,7 @@ func (s *IntSingleLinkedList) PushAt(value int, position int) {
 		return
 	}
 
-	if position == s.length {
+	if position == s.length-1 {
 		s.PushBack(value)
 		return
 	}
@@ -102,19 +99,12 @@ func (s *IntSingleLinkedList) PopFront() (int, bool) {
 	s.length--
 	popedValue := s.head.value
 
-	if s.length != 0 {
-		newHead := *s.head.next
-		s.head = &newHead
+	s.head = s.head.next
 
-		if s.length == 1 {
-			s.tail = s.head
-		}
-
-		return popedValue, true
+	if s.length == 1 {
+		s.tail = s.head
 	}
 
-	s.head = nil
-	s.tail = nil
 	return popedValue, true
 }
 
