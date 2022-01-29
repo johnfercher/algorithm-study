@@ -144,6 +144,10 @@ func (s *IntSingleLinkedList) At(position int) (int, bool) {
 }
 
 func (s *IntSingleLinkedList) Reverse() {
+	if s.head == nil {
+		return
+	}
+
 	var arrAux []*IntSingleNode
 
 	node := s.head
