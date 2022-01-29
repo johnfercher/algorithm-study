@@ -4,3 +4,4 @@
 
 ## Seções
 1. [BigO](udemy/bigo.md)
+2. [Linked List](udemy/linkedlist.md)
