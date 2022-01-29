@@ -113,7 +113,7 @@ func (s *IntSingleLinkedList) PopBack() (int, bool) {
 }
 
 func (s *IntSingleLinkedList) PopAt(position int) (int, bool) {
-	if s.length == 0 {
+	if s.length == 0 || position > s.length-1 {
 		return 0, false
 	}
 
@@ -126,9 +126,12 @@ func (s *IntSingleLinkedList) PopAt(position int) (int, bool) {
 		return 0, false
 	}
 
+	if position == s.length-1 {
+		s.tail = node
+	}
+
 	s.length--
 	value := node.next.value
-
 	node.next = node.next.next
 
 	return value, true

@@ -196,6 +196,78 @@ func TestSingleIntLinkedList_PushAt(t *testing.T) {
 	assert.Equal(t, 4, sut.Length())
 }
 
+func TestSingleIntLinkedList_PopBack(t *testing.T) {
+	// Arrange
+	sut := data.NewSingleIntLinkedList()
+
+	value := 0
+	ok := false
+
+	sut.PushFront(1)
+	sut.PushFront(2)
+	sut.PushFront(3)
+
+	// First Pop
+	value, ok = sut.PopBack()
+	assert.Equal(t, 1, value)
+	assert.True(t, ok)
+
+	value, ok = sut.Head()
+	assert.Equal(t, 3, value)
+	assert.True(t, ok)
+
+	value, ok = sut.Tail()
+	assert.Equal(t, 2, value)
+	assert.True(t, ok)
+
+	assert.Equal(t, 2, sut.Length())
+
+	// Second Pop
+	value, ok = sut.PopBack()
+	assert.Equal(t, 2, value)
+	assert.True(t, ok)
+
+	value, ok = sut.Head()
+	assert.Equal(t, 3, value)
+	assert.True(t, ok)
+
+	value, ok = sut.Tail()
+	assert.Equal(t, 3, value)
+	assert.True(t, ok)
+
+	assert.Equal(t, 1, sut.Length())
+
+	// Last Pop
+	value, ok = sut.PopFront()
+	assert.Equal(t, 3, value)
+	assert.True(t, ok)
+
+	value, ok = sut.Head()
+	assert.Zero(t, value)
+	assert.False(t, ok)
+
+	value, ok = sut.Tail()
+	assert.Zero(t, value)
+	assert.False(t, ok)
+
+	assert.Equal(t, 0, sut.Length())
+
+	// Invalid Pop
+	value, ok = sut.PopFront()
+	assert.Zero(t, value)
+	assert.False(t, ok)
+
+	value, ok = sut.Head()
+	assert.Zero(t, value)
+	assert.False(t, ok)
+
+	value, ok = sut.Tail()
+	assert.Zero(t, value)
+	assert.False(t, ok)
+
+	assert.Equal(t, 0, sut.Length())
+}
+
 func TestSingleIntLinkedList_PopFront(t *testing.T) {
 	// Arrange
 	sut := data.NewSingleIntLinkedList()
@@ -268,80 +340,6 @@ func TestSingleIntLinkedList_PopFront(t *testing.T) {
 	assert.Equal(t, 0, sut.Length())
 }
 
-func TestSingleIntLinkedList_PopBack(t *testing.T) {
-	// Arrange
-	sut := data.NewSingleIntLinkedList()
-
-	value := 0
-	ok := false
-
-	sut.PushFront(1)
-	sut.PushFront(2)
-	sut.PushFront(3)
-
-	sut.Print()
-
-	// First Pop
-	value, ok = sut.PopBack()
-	assert.Equal(t, 1, value)
-	assert.True(t, ok)
-
-	value, ok = sut.Head()
-	assert.Equal(t, 3, value)
-	assert.True(t, ok)
-
-	value, ok = sut.Tail()
-	assert.Equal(t, 1, value)
-	assert.True(t, ok)
-
-	assert.Equal(t, 2, sut.Length())
-
-	// Second Pop
-	value, ok = sut.PopBack()
-	assert.Equal(t, 2, value)
-	assert.True(t, ok)
-
-	value, ok = sut.Head()
-	assert.Equal(t, 3, value)
-	assert.True(t, ok)
-
-	value, ok = sut.Tail()
-	assert.Equal(t, 1, value)
-	assert.True(t, ok)
-
-	assert.Equal(t, 1, sut.Length())
-
-	// Last Pop
-	value, ok = sut.PopFront()
-	assert.Equal(t, 3, value)
-	assert.True(t, ok)
-
-	value, ok = sut.Head()
-	assert.Zero(t, value)
-	assert.False(t, ok)
-
-	value, ok = sut.Tail()
-	assert.Zero(t, value)
-	assert.False(t, ok)
-
-	assert.Equal(t, 0, sut.Length())
-
-	// Invalid Pop
-	value, ok = sut.PopFront()
-	assert.Zero(t, value)
-	assert.False(t, ok)
-
-	value, ok = sut.Head()
-	assert.Zero(t, value)
-	assert.False(t, ok)
-
-	value, ok = sut.Tail()
-	assert.Zero(t, value)
-	assert.False(t, ok)
-
-	assert.Equal(t, 0, sut.Length())
-}
-
 func TestSingleIntLinkedList_PopAt(t *testing.T) {
 	// Arrange
 	sut := data.NewSingleIntLinkedList()
@@ -377,7 +375,7 @@ func TestSingleIntLinkedList_PopAt(t *testing.T) {
 	assert.True(t, ok)
 
 	value, ok = sut.Tail()
-	assert.Equal(t, 4, value)
+	assert.Equal(t, 2, value)
 	assert.True(t, ok)
 
 	assert.Equal(t, 2, sut.Length())

@@ -120,6 +120,12 @@ func (s *IntDoubleLinkedList) PopFront() (int, bool) {
 	s.length--
 	popedValue := s.head.value
 
+	if s.head.next == nil {
+		s.head = nil
+		s.tail = nil
+		return popedValue, true
+	}
+
 	newHead := s.head.next
 	newHead.before = nil
 	s.head = newHead
@@ -151,15 +157,11 @@ func (s *IntDoubleLinkedList) PopBack() (int, bool) {
 }
 
 func (s *IntDoubleLinkedList) PopAt(position int) (int, bool) {
-	if s.length == 0 {
+	if s.length == 0 || position > s.length-1 {
 		return 0, false
 	}
 
-	if s.length == 1 {
-		return s.PopFront()
-	}
-
-	if position == 0 {
+	if s.length == 1 || position == 0 {
 		return s.PopFront()
 	}
 
@@ -174,7 +176,12 @@ func (s *IntDoubleLinkedList) PopAt(position int) (int, bool) {
 
 	s.length--
 	value := node.next.value
-	node.next = nil
+
+	a := node
+	b := node.next.next
+
+	a.next = b
+	b.before = a
 
 	return value, true
 }
