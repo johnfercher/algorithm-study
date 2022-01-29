@@ -16,3 +16,5 @@
 ## Queues
 * FIFO (First In First Out)
 * Nunca se usa arrays, pois a operação de `dequeue()` é `O(n)`;
+* A implementação utilizando Single Linked List (mapeando o primeiro) faz com que a operação de `enqueue` seja `O(n)`, pois para encontrar o ultimo da filha é necessário percorrer toda a fila
+* A implementação utilizando Double Linked List (mapeando o primeiro e o segundo), faz com que a operação de `enqueue` seja `O(n)`, pois sabesse sempre o ultimo da fila
