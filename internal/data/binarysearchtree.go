@@ -3,9 +3,10 @@ package data
 import "fmt"
 
 type IntNode struct {
-	Value int
-	Left  *IntNode
-	Right *IntNode
+	Value    int
+	Previous *IntNode
+	Left     *IntNode
+	Right    *IntNode
 }
 
 func (s *IntNode) IsLeaf() bool {
@@ -17,6 +18,15 @@ func (s *IntNode) IsLeaf() bool {
 }
 
 func (s *IntNode) Print() {
+	if s == nil {
+		return
+	}
+
+	if s.IsLeaf() {
+		fmt.Printf("(%d)\n", s.Value)
+		return
+	}
+
 	if s.Right != nil {
 		fmt.Printf("(%d) -> %d\n", s.Value, s.Right.Value)
 		s.Right.Print()
@@ -43,6 +53,14 @@ func (s *BinaryIntSearchTree) Length() int {
 	return s.length
 }
 
+func (s *BinaryIntSearchTree) Root() (int, bool) {
+	if s.root == nil {
+		return 0, false
+	}
+
+	return s.root.Value, true
+}
+
 func (s *BinaryIntSearchTree) Add(value int) bool {
 	s.length++
 	if s.root == nil {
@@ -52,63 +70,88 @@ func (s *BinaryIntSearchTree) Add(value int) bool {
 		return true
 	}
 
-	previous, current, validInsertion := s.GetEdgeToAddValue(value)
-	if !validInsertion {
+	closerNode, sameValue := s.getCloserNode(value)
+	if sameValue {
 		return false
 	}
 
 	newNode := &IntNode{
-		Value: value,
+		Value:    value,
+		Previous: closerNode,
 	}
 
-	if current != nil {
-		if current.Value > value {
-			newNode.Right = current
-		} else {
-			newNode.Left = current
-		}
-	}
-
-	if value > previous.Value {
-		previous.Right = newNode
+	if value > closerNode.Value {
+		closerNode.Right = newNode
 	} else {
-		previous.Left = newNode
+		closerNode.Left = newNode
 	}
 
 	return true
 }
 
-func (s *BinaryIntSearchTree) GetEdgeToAddValue(value int) (previous *IntNode, current *IntNode, validInsertion bool) {
-	var oldParent *IntNode
-	parent := s.root
-
-	if parent.IsLeaf() {
-		return parent, nil, true
+func (s *BinaryIntSearchTree) Remove(value int) bool {
+	if s.root == nil {
+		return false
 	}
 
-	for parent != nil {
-		if value == parent.Value {
-			return nil, nil, false
-		}
+	s.length--
 
-		oldParent = parent
-
-		if value > parent.Value {
-			if parent.Right.IsLeaf() {
-				return parent, parent.Right, true
-			}
-			parent = parent.Right
-		} else {
-			if parent.Left.IsLeaf() {
-				return parent, parent.Left, true
-			}
-			parent = parent.Left
-		}
+	// Need to implement
+	if s.root.Value == value {
+		return false
 	}
 
-	return oldParent, parent, true
+	if s.root.Value == value {
+	}
+
+	closerNode, sameValue := s.getCloserNode(value)
+	if !sameValue {
+		return false
+	}
+
+	s.removeNodeFromBranch(closerNode)
+	return true
+}
+
+func (s *BinaryIntSearchTree) Exists(value int) bool {
+	_, sameValue := s.getCloserNode(value)
+	if !sameValue {
+		return false
+	}
+
+	return true
 }
 
 func (s *BinaryIntSearchTree) Print() {
 	s.root.Print()
+}
+
+func (s *BinaryIntSearchTree) removeNodeFromBranch(node *IntNode) {
+	if node.Value > node.Previous.Value {
+		node.Previous.Right = node.Right
+		return
+	}
+
+	node.Previous.Left = node.Left
+}
+
+func (s *BinaryIntSearchTree) getCloserNode(value int) (node *IntNode, sameValue bool) {
+	nodeIterator := s.root
+	closerNode := s.root
+
+	for nodeIterator != nil {
+		if value == nodeIterator.Value {
+			return nodeIterator, true
+		}
+
+		closerNode = nodeIterator
+
+		if value > nodeIterator.Value {
+			nodeIterator = nodeIterator.Right
+		} else {
+			nodeIterator = nodeIterator.Left
+		}
+	}
+
+	return closerNode, false
 }
