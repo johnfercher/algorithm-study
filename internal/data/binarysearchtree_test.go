@@ -22,7 +22,13 @@ func TestBinaryIntSearchTree_Add(t *testing.T) {
 	// Act
 	sut.Add(1)
 
-	sut.Add(3)
 	sut.Add(2)
+	sut.Add(3)
+	sut.Add(4)
+	sut.Add(5)
+	sut.Add(6)
+	sut.Add(7)
+	sut.Add(8)
+	sut.Add(9)
 	sut.Print()
 }
