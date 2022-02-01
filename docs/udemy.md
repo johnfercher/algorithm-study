@@ -6,3 +6,5 @@
 1. [BigO](udemy/bigo.md)
 2. [Linked List](udemy/linkedlist.md)
 3. [Stacks & Queues](udemy/stackqueue.md)
+4. [Binary Search Tree](udemy/tree.md)
+5. [Graphs](udemy/graphs.md)
