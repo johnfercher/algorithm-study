@@ -34,7 +34,7 @@ func main() {
 	// Sorted -> Time: O(n), Space: O(1)
 	{
 		sortCounter := domain.NewCounter("sort")
-		arr := sort.MergeInt(arr, sortCounter)
+		arr := sort.MergeIntWithCounter(arr, sortCounter)
 		fmt.Println(arr)
 
 		counter := domain.NewCounter("sorted o(n)")

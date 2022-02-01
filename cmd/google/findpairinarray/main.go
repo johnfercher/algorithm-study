@@ -21,7 +21,7 @@ func main() {
 
 	unsortedArray := generate.UnsortedIntArray(size, maxValue)
 	fmt.Println(unsortedArray)
-	sortedArray := sort.MergeInt(unsortedArray, counter)
+	sortedArray := sort.MergeIntWithCounter(unsortedArray, counter)
 	//counter.Print()
 
 	// Unsorted Solutions

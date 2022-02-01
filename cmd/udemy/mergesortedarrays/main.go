@@ -14,10 +14,10 @@ func main() {
 	counter := domain.NewCounter("sort")
 
 	unsorted1 := generate.UnsortedIntArray(size1, maxValue)
-	sorted1 := sort.MergeInt(unsorted1, counter)
+	sorted1 := sort.MergeIntWithCounter(unsorted1, counter)
 
 	unsorted2 := generate.UnsortedIntArray(size2, maxValue)
-	sorted2 := sort.MergeInt(unsorted2, counter)
+	sorted2 := sort.MergeIntWithCounter(unsorted2, counter)
 
 	fmt.Println(mergeSorted(sorted1, sorted2))
 }

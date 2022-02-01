@@ -19,7 +19,7 @@ func InsertObject(arr domain.Objects, counter *domain.Counter) domain.Objects {
 }
 
 // MERGE
-func MergeInt(arr []int, counter *domain.Counter) []int {
+func MergeIntWithCounter(arr []int, counter *domain.Counter) []int {
 	if len(arr) < 2 {
 		return arr
 	}
@@ -27,8 +27,8 @@ func MergeInt(arr []int, counter *domain.Counter) []int {
 	aUnsorted := arr[:len(arr)/2]
 	bUnsorted := arr[len(arr)/2:]
 
-	aSorted := MergeInt(aUnsorted, counter)
-	bSorted := MergeInt(bUnsorted, counter)
+	aSorted := MergeIntWithCounter(aUnsorted, counter)
+	bSorted := MergeIntWithCounter(bUnsorted, counter)
 
 	return mergeIntArray(aSorted, bSorted, counter)
 }
