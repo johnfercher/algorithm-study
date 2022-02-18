@@ -19,6 +19,7 @@ func TestIntDoubleLinkedList_PushBack(t *testing.T) {
 	// Arrange
 	sut := data.NewDoubleIntLinkedList()
 
+	elements := []int{}
 	value := 0
 	ok := false
 
@@ -29,6 +30,11 @@ func TestIntDoubleLinkedList_PushBack(t *testing.T) {
 
 	value, ok = sut.Tail()
 	assert.Zero(t, value)
+	assert.False(t, ok)
+
+	assert.Equal(t, 0, sut.Length())
+	elements, ok = sut.GetThToLast(0)
+	assert.Nil(t, elements)
 	assert.False(t, ok)
 
 	// Push Back 1
@@ -43,6 +49,9 @@ func TestIntDoubleLinkedList_PushBack(t *testing.T) {
 	assert.True(t, ok)
 
 	assert.Equal(t, 1, sut.Length())
+	elements, ok = sut.GetThToLast(0)
+	assert.Equal(t, []int{1}, elements)
+	assert.True(t, ok)
 
 	// Push Back 2
 	sut.PushBack(2)
@@ -56,6 +65,9 @@ func TestIntDoubleLinkedList_PushBack(t *testing.T) {
 	assert.True(t, ok)
 
 	assert.Equal(t, 2, sut.Length())
+	elements, ok = sut.GetThToLast(0)
+	assert.Equal(t, []int{1, 2}, elements)
+	assert.True(t, ok)
 
 	// Push Back 3
 	sut.PushBack(3)
@@ -69,12 +81,16 @@ func TestIntDoubleLinkedList_PushBack(t *testing.T) {
 	assert.True(t, ok)
 
 	assert.Equal(t, 3, sut.Length())
+	elements, ok = sut.GetThToLast(0)
+	assert.Equal(t, []int{1, 2, 3}, elements)
+	assert.True(t, ok)
 }
 
 func TestIntDoubleLinkedList_PushFront(t *testing.T) {
 	// Arrange
 	sut := data.NewDoubleIntLinkedList()
 
+	elements := []int{}
 	value := 0
 	ok := false
 
@@ -85,6 +101,11 @@ func TestIntDoubleLinkedList_PushFront(t *testing.T) {
 
 	value, ok = sut.Tail()
 	assert.Zero(t, value)
+	assert.False(t, ok)
+
+	assert.Equal(t, 0, sut.Length())
+	elements, ok = sut.GetThToLast(0)
+	assert.Nil(t, elements)
 	assert.False(t, ok)
 
 	// Push Front 1
@@ -99,6 +120,9 @@ func TestIntDoubleLinkedList_PushFront(t *testing.T) {
 	assert.True(t, ok)
 
 	assert.Equal(t, 1, sut.Length())
+	elements, ok = sut.GetThToLast(0)
+	assert.Equal(t, []int{1}, elements)
+	assert.True(t, ok)
 
 	// Push Front 2
 	sut.PushFront(2)
@@ -112,6 +136,9 @@ func TestIntDoubleLinkedList_PushFront(t *testing.T) {
 	assert.True(t, ok)
 
 	assert.Equal(t, 2, sut.Length())
+	elements, ok = sut.GetThToLast(0)
+	assert.Equal(t, []int{2, 1}, elements)
+	assert.True(t, ok)
 
 	// Push Front 3
 	sut.PushFront(3)
@@ -125,6 +152,9 @@ func TestIntDoubleLinkedList_PushFront(t *testing.T) {
 	assert.True(t, ok)
 
 	assert.Equal(t, 3, sut.Length())
+	elements, ok = sut.GetThToLast(0)
+	assert.Equal(t, []int{3, 2, 1}, elements)
+	assert.True(t, ok)
 }
 
 func TestIntDoubleLinkedList_PushAt(t *testing.T) {
@@ -450,4 +480,71 @@ func TestIntDoubleLinkedList_At(t *testing.T) {
 	value, ok = sut.At(3)
 	assert.False(t, ok)
 	assert.Zero(t, value)
+}
+
+// Cracking The Code Interview
+func TestIntDoubleLinkedList_RemoveDuplication(t *testing.T) {
+	// Arrange
+	sut := data.NewDoubleIntLinkedList()
+
+	sut.PushBack(1)
+	sut.PushBack(1)
+	sut.PushBack(2)
+	sut.PushBack(1)
+	sut.PushBack(2)
+	sut.PushBack(3)
+	sut.PushBack(2)
+	sut.PushBack(2)
+
+	// Act
+	removed := sut.RemoveDuplication()
+	value := 0
+	ok := false
+
+	// Assert
+	value, ok = sut.Head()
+	assert.Equal(t, 1, value)
+	assert.True(t, ok)
+
+	value, ok = sut.Tail()
+	assert.Equal(t, 3, value)
+	assert.True(t, ok)
+
+	assert.Equal(t, 3, sut.Length())
+	assert.Equal(t, []int{1, 1, 2, 2, 2}, removed)
+}
+
+func TestIntDoubleLinkedList_GetThToLast(t *testing.T) {
+	// Arrange
+	sut := data.NewDoubleIntLinkedList()
+
+	for i := 0; i < 10; i++ {
+		sut.PushBack(i)
+	}
+
+	// Act
+	elements, ok := sut.GetThToLast(5)
+
+	// Assert
+	assert.True(t, ok)
+	assert.Equal(t, []int{5, 6, 7, 8, 9}, elements)
+}
+
+func TestIntDoubleLinkedList_PartitionBetweenValue(t *testing.T) {
+	// Arrange
+	sut := data.NewDoubleIntLinkedList()
+
+	for i := 0; i < 10; i++ {
+		sut.PushBack(10 - i)
+	}
+
+	// Act
+	sut, ok := sut.PartitionBetweenValue(5)
+
+	// Assert
+	assert.True(t, ok)
+	assert.Equal(t, 10, sut.Length())
+	elements, ok := sut.GetThToLast(0)
+	assert.True(t, ok)
+	assert.Equal(t, []int{4, 3, 2, 1, 10, 9, 8, 7, 6, 5}, elements)
 }

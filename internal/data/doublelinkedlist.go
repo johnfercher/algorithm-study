@@ -281,3 +281,93 @@ func (s *IntDoubleLinkedList) backwardTransverseUntil(position int) (*IntDoubleN
 
 	return nil, false
 }
+
+// Cracking The Code Interview
+func (s *IntDoubleLinkedList) RemoveDuplication() []int {
+	if s.length == 0 {
+		return []int{}
+	}
+
+	removed := []int{}
+	occurrences := make(map[int]bool)
+	current := s.head
+
+	for current != nil {
+		if !occurrences[current.value] {
+			occurrences[current.value] = true
+			current = current.next
+			continue
+		}
+
+		removed = append(removed, current.value)
+
+		if current.before != nil {
+			current.before.next = current.next
+		}
+
+		if current.next != nil {
+			current.next.before = current.before
+		}
+
+		if current == s.tail {
+			s.tail = current.before
+		}
+
+		current = current.next
+	}
+
+	s.length -= len(removed)
+
+	return removed
+}
+
+func (s *IntDoubleLinkedList) GetThToLast(index int) ([]int, bool) {
+	if s.length == 0 {
+		return nil, false
+	}
+
+	if index > s.length {
+		return nil, false
+	}
+
+	elements := make([]int, s.length-index)
+	node := s.tail
+	i := 0
+	for node != nil && s.length-i > index {
+		elements[s.length-index-i-1] = node.value
+		node = node.before
+		i++
+	}
+
+	return elements, true
+}
+
+func (s *IntDoubleLinkedList) PartitionBetweenValue(value int) (*IntDoubleLinkedList, bool) {
+	if s.length == 0 {
+		return nil, false
+	}
+
+	var greaterOrEqual []int
+	var less []int
+
+	node := s.head
+	for node != nil {
+		if node.value >= value {
+			greaterOrEqual = append(greaterOrEqual, node.value)
+		} else {
+			less = append(less, node.value)
+		}
+		node = node.next
+	}
+
+	newS := NewDoubleIntLinkedList()
+	for _, element := range less {
+		newS.PushBack(element)
+	}
+
+	for _, element := range greaterOrEqual {
+		newS.PushBack(element)
+	}
+
+	return newS, true
+}
