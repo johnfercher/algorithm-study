@@ -9,3 +9,4 @@
 4. [Binary Search Tree](udemy/tree.md)
 5. [Graphs](udemy/graphs.md)
 6. [Recursion](udemy/recursion.md)
+7. [Sorts](udemy/sorts.md)

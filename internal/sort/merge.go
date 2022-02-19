@@ -1,54 +1,46 @@
 package sort
 
 func MergeInt(arr []int, orderDesc bool) []int {
-	if len(arr) <= 1 {
+	if len(arr) < 2 {
 		return arr
 	}
 
-	unsortedLeft := arr[:len(arr)/2]
-	unsortedRight := arr[len(arr)/2:]
+	left := arr[:len(arr)/2]
+	right := arr[len(arr)/2:]
 
-	sortedLeft := MergeInt(unsortedLeft, orderDesc)
-	sortedRight := MergeInt(unsortedRight, orderDesc)
+	sortedLeft := MergeInt(left, orderDesc)
+	sortedRight := MergeInt(right, orderDesc)
+
+	return mergeArrays(sortedLeft, sortedRight, orderDesc)
+}
+
+func mergeArrays(a []int, b []int, orderDesc bool) []int {
+	var merged []int
 
 	condition := lessThan
 	if orderDesc {
 		condition = greaterThan
 	}
 
-	return mergeArrays(sortedLeft, sortedRight, condition)
-}
-
-func greaterThan(a int, b int) bool {
-	return a > b
-}
-
-func lessThan(a int, b int) bool {
-	return a < b
-}
-
-func mergeArrays(a []int, b []int, condition func(int, int) bool) []int {
-	var final []int
-
 	i := 0
 	j := 0
 	for i < len(a) && j < len(b) {
 		if condition(a[i], b[j]) {
-			final = append(final, a[i])
+			merged = append(merged, a[i])
 			i++
 		} else {
-			final = append(final, b[j])
+			merged = append(merged, b[j])
 			j++
 		}
 	}
 
 	for ; i < len(a); i++ {
-		final = append(final, a[i])
+		merged = append(merged, a[i])
 	}
 
 	for ; j < len(b); j++ {
-		final = append(final, b[j])
+		merged = append(merged, b[j])
 	}
 
-	return final
+	return merged
 }
