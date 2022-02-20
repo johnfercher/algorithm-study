@@ -10,3 +10,4 @@
 5. [Graphs](udemy/graphs.md)
 6. [Recursion](udemy/recursion.md)
 7. [Sorts](udemy/sorts.md)
+8. [Search](udemy/search.md)
