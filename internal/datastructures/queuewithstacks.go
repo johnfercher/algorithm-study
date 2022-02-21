@@ -1,4 +1,4 @@
-package data
+package datastructures
 
 type QueueWithStack struct {
 	stack1, stack2 *StackIntLinkedList

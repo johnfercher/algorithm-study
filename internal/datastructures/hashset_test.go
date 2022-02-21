@@ -1,14 +1,14 @@
-package data_test
+package datastructures_test
 
 import (
-	"algorithm-study/internal/data"
+	"algorithm-study/internal/datastructures"
 	"github.com/stretchr/testify/assert"
 	"testing"
 )
 
 func TestNewIntHashSet(t *testing.T) {
 	// Act
-	sut := data.NewIntHashSet(1000)
+	sut := datastructures.NewIntHashSet(1000)
 
 	// Assert
 	assert.NotNil(t, sut)
@@ -17,7 +17,7 @@ func TestNewIntHashSet(t *testing.T) {
 
 func TestIntHashSet_Add(t *testing.T) {
 	// Arrange
-	sut := data.NewIntHashSet(1000)
+	sut := datastructures.NewIntHashSet(1000)
 
 	// Act
 	sut.Add("key", 10)
@@ -31,7 +31,7 @@ func TestIntHashSet_Add(t *testing.T) {
 
 func TestIntHashSet_Remove(t *testing.T) {
 	// Arrange
-	sut := data.NewIntHashSet(1000)
+	sut := datastructures.NewIntHashSet(1000)
 
 	// Act
 	sut.Add("key", 10)

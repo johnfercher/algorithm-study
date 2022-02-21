@@ -1,4 +1,4 @@
-package data
+package datastructures
 
 type StackIntLinkedListMin struct {
 	StackIntLinkedList

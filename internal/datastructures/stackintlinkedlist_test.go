@@ -1,14 +1,14 @@
-package data_test
+package datastructures_test
 
 import (
-	"algorithm-study/internal/data"
+	"algorithm-study/internal/datastructures"
 	"github.com/stretchr/testify/assert"
 	"testing"
 )
 
-func TestNewStackIntArray(t *testing.T) {
+func TestNewStackIntLinkedList(t *testing.T) {
 	// Act
-	sut := data.NewStackIntArray()
+	sut := datastructures.NewStackIntLinkedList()
 
 	// Assert
 	assert.NotNil(t, sut)
@@ -18,9 +18,9 @@ func TestNewStackIntArray(t *testing.T) {
 	assert.False(t, ok)
 }
 
-func TestStackIntArray_Push(t *testing.T) {
+func TestStackIntLinkedList_Push(t *testing.T) {
 	// Arrange
-	sut := data.NewStackIntArray()
+	sut := datastructures.NewStackIntLinkedList()
 
 	value := 0
 	ok := false
@@ -47,9 +47,9 @@ func TestStackIntArray_Push(t *testing.T) {
 	assert.True(t, ok)
 }
 
-func TestStackIntArray_Peek(t *testing.T) {
+func TestStackIntLinkedList_Peek(t *testing.T) {
 	// Arrange
-	sut := data.NewStackIntArray()
+	sut := datastructures.NewStackIntLinkedList()
 
 	sut.Push(1)
 	sut.Push(2)
@@ -63,9 +63,9 @@ func TestStackIntArray_Peek(t *testing.T) {
 	assert.True(t, ok)
 }
 
-func TestStackIntArray_Pop(t *testing.T) {
+func TestStackIntLinkedList_Pop(t *testing.T) {
 	// Arrange
-	sut := data.NewStackIntArray()
+	sut := datastructures.NewStackIntLinkedList()
 
 	value := 0
 	ok := false
@@ -99,9 +99,9 @@ func TestStackIntArray_Pop(t *testing.T) {
 	assert.Equal(t, 0, sut.Length())
 }
 
-func TestStackIntArray_Length(t *testing.T) {
+func TestStackIntLinkedList_Length(t *testing.T) {
 	// Arrange
-	sut := data.NewStackIntArray()
+	sut := datastructures.NewStackIntLinkedList()
 
 	sut.Push(1)
 	sut.Push(1)

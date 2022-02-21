@@ -1,4 +1,4 @@
-package data
+package datastructures
 
 import "algorithm-study/internal/hash"
 

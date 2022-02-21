@@ -1,14 +1,14 @@
-package data_test
+package datastructures_test
 
 import (
-	"algorithm-study/internal/data"
+	"algorithm-study/internal/datastructures"
 	"github.com/stretchr/testify/assert"
 	"testing"
 )
 
 func TestNewQueueWithStack(t *testing.T) {
 	// Act
-	sut := data.NewQueueWithStack()
+	sut := datastructures.NewQueueWithStack()
 
 	// Assert
 	assert.Zero(t, sut.Length())
@@ -19,7 +19,7 @@ func TestNewQueueWithStack(t *testing.T) {
 
 func TestQueueWithStack_Enqueue(t *testing.T) {
 	// Arrange
-	sut := data.NewQueueWithStack()
+	sut := datastructures.NewQueueWithStack()
 
 	value := 0
 	ok := false
@@ -48,7 +48,7 @@ func TestQueueWithStack_Enqueue(t *testing.T) {
 
 func TestQueueWithStack_Dequeue(t *testing.T) {
 	// Arrange
-	sut := data.NewQueueWithStack()
+	sut := datastructures.NewQueueWithStack()
 
 	value := 0
 	ok := false
@@ -98,7 +98,7 @@ func TestQueueWithStack_Dequeue(t *testing.T) {
 
 func TestQueueWithStack_Peek(t *testing.T) {
 	// Arrange
-	sut := data.NewQueueWithStack()
+	sut := datastructures.NewQueueWithStack()
 
 	value := 0
 	ok := false

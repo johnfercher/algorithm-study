@@ -1,14 +1,14 @@
-package data_test
+package datastructures_test
 
 import (
-	"algorithm-study/internal/data"
+	"algorithm-study/internal/datastructures"
 	"github.com/stretchr/testify/assert"
 	"testing"
 )
 
 func TestNewIntLinkedList(t *testing.T) {
 	// Act
-	sut := data.NewDoubleIntLinkedList()
+	sut := datastructures.NewDoubleIntLinkedList()
 
 	// Assert
 	assert.NotNil(t, sut)
@@ -17,7 +17,7 @@ func TestNewIntLinkedList(t *testing.T) {
 
 func TestIntDoubleLinkedList_PushBack(t *testing.T) {
 	// Arrange
-	sut := data.NewDoubleIntLinkedList()
+	sut := datastructures.NewDoubleIntLinkedList()
 
 	elements := []int{}
 	value := 0
@@ -88,7 +88,7 @@ func TestIntDoubleLinkedList_PushBack(t *testing.T) {
 
 func TestIntDoubleLinkedList_PushFront(t *testing.T) {
 	// Arrange
-	sut := data.NewDoubleIntLinkedList()
+	sut := datastructures.NewDoubleIntLinkedList()
 
 	elements := []int{}
 	value := 0
@@ -159,7 +159,7 @@ func TestIntDoubleLinkedList_PushFront(t *testing.T) {
 
 func TestIntDoubleLinkedList_PushAt(t *testing.T) {
 	// Arrange
-	sut := data.NewDoubleIntLinkedList()
+	sut := datastructures.NewDoubleIntLinkedList()
 
 	value := 0
 	ok := false
@@ -228,7 +228,7 @@ func TestIntDoubleLinkedList_PushAt(t *testing.T) {
 
 func TestIntDoubleLinkedList_PopBack(t *testing.T) {
 	// Arrange
-	sut := data.NewDoubleIntLinkedList()
+	sut := datastructures.NewDoubleIntLinkedList()
 
 	value := 0
 	ok := false
@@ -300,7 +300,7 @@ func TestIntDoubleLinkedList_PopBack(t *testing.T) {
 
 func TestIntDoubleLinkedList_PopFront(t *testing.T) {
 	// Arrange
-	sut := data.NewDoubleIntLinkedList()
+	sut := datastructures.NewDoubleIntLinkedList()
 
 	value := 0
 	ok := false
@@ -372,7 +372,7 @@ func TestIntDoubleLinkedList_PopFront(t *testing.T) {
 
 func TestIntDoubleLinkedList_PopAt(t *testing.T) {
 	// Arrange
-	sut := data.NewDoubleIntLinkedList()
+	sut := datastructures.NewDoubleIntLinkedList()
 
 	value := 0
 	ok := false
@@ -458,7 +458,7 @@ func TestIntDoubleLinkedList_PopAt(t *testing.T) {
 
 func TestIntDoubleLinkedList_At(t *testing.T) {
 	// Arrange
-	sut := data.NewDoubleIntLinkedList()
+	sut := datastructures.NewDoubleIntLinkedList()
 
 	sut.PushBack(1)
 	sut.PushBack(2)
@@ -485,7 +485,7 @@ func TestIntDoubleLinkedList_At(t *testing.T) {
 // Cracking The Code Interview
 func TestIntDoubleLinkedList_RemoveDuplication(t *testing.T) {
 	// Arrange
-	sut := data.NewDoubleIntLinkedList()
+	sut := datastructures.NewDoubleIntLinkedList()
 
 	sut.PushBack(1)
 	sut.PushBack(1)
@@ -516,7 +516,7 @@ func TestIntDoubleLinkedList_RemoveDuplication(t *testing.T) {
 
 func TestIntDoubleLinkedList_GetThToLast(t *testing.T) {
 	// Arrange
-	sut := data.NewDoubleIntLinkedList()
+	sut := datastructures.NewDoubleIntLinkedList()
 
 	for i := 0; i < 10; i++ {
 		sut.PushBack(i)
@@ -532,7 +532,7 @@ func TestIntDoubleLinkedList_GetThToLast(t *testing.T) {
 
 func TestIntDoubleLinkedList_PartitionBetweenValue(t *testing.T) {
 	// Arrange
-	sut := data.NewDoubleIntLinkedList()
+	sut := datastructures.NewDoubleIntLinkedList()
 
 	for i := 0; i < 10; i++ {
 		sut.PushBack(10 - i)

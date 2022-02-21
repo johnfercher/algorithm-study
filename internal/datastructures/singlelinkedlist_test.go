@@ -1,14 +1,14 @@
-package data_test
+package datastructures_test
 
 import (
-	"algorithm-study/internal/data"
+	"algorithm-study/internal/datastructures"
 	"github.com/stretchr/testify/assert"
 	"testing"
 )
 
 func TestNewSingleIntLinkedList(t *testing.T) {
 	// Act
-	sut := data.NewSingleIntLinkedList()
+	sut := datastructures.NewSingleIntLinkedList()
 
 	// Assert
 	assert.NotNil(t, sut)
@@ -17,7 +17,7 @@ func TestNewSingleIntLinkedList(t *testing.T) {
 
 func TestSingleIntLinkedList_PushBack(t *testing.T) {
 	// Arrange
-	sut := data.NewSingleIntLinkedList()
+	sut := datastructures.NewSingleIntLinkedList()
 
 	value := 0
 	ok := false
@@ -73,7 +73,7 @@ func TestSingleIntLinkedList_PushBack(t *testing.T) {
 
 func TestSingleIntLinkedList_PushFront(t *testing.T) {
 	// Arrange
-	sut := data.NewSingleIntLinkedList()
+	sut := datastructures.NewSingleIntLinkedList()
 
 	value := 0
 	ok := false
@@ -129,7 +129,7 @@ func TestSingleIntLinkedList_PushFront(t *testing.T) {
 
 func TestSingleIntLinkedList_PushAt(t *testing.T) {
 	// Arrange
-	sut := data.NewSingleIntLinkedList()
+	sut := datastructures.NewSingleIntLinkedList()
 
 	value := 0
 	ok := false
@@ -198,7 +198,7 @@ func TestSingleIntLinkedList_PushAt(t *testing.T) {
 
 func TestSingleIntLinkedList_PopBack(t *testing.T) {
 	// Arrange
-	sut := data.NewSingleIntLinkedList()
+	sut := datastructures.NewSingleIntLinkedList()
 
 	value := 0
 	ok := false
@@ -270,7 +270,7 @@ func TestSingleIntLinkedList_PopBack(t *testing.T) {
 
 func TestSingleIntLinkedList_PopFront(t *testing.T) {
 	// Arrange
-	sut := data.NewSingleIntLinkedList()
+	sut := datastructures.NewSingleIntLinkedList()
 
 	value := 0
 	ok := false
@@ -342,7 +342,7 @@ func TestSingleIntLinkedList_PopFront(t *testing.T) {
 
 func TestSingleIntLinkedList_PopAt(t *testing.T) {
 	// Arrange
-	sut := data.NewSingleIntLinkedList()
+	sut := datastructures.NewSingleIntLinkedList()
 
 	value := 0
 	ok := false
@@ -428,7 +428,7 @@ func TestSingleIntLinkedList_PopAt(t *testing.T) {
 
 func TestSingleIntLinkedList_At(t *testing.T) {
 	// Arrange
-	sut := data.NewSingleIntLinkedList()
+	sut := datastructures.NewSingleIntLinkedList()
 
 	sut.PushBack(1)
 	sut.PushBack(2)
@@ -454,7 +454,7 @@ func TestSingleIntLinkedList_At(t *testing.T) {
 
 func TestIntSingleLinkedList_Reverse(t *testing.T) {
 	// Arrange
-	sut := data.NewSingleIntLinkedList()
+	sut := datastructures.NewSingleIntLinkedList()
 
 	sut.PushBack(1)
 	sut.PushBack(2)

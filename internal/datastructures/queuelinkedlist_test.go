@@ -1,14 +1,14 @@
-package data_test
+package datastructures_test
 
 import (
-	"algorithm-study/internal/data"
+	"algorithm-study/internal/datastructures"
 	"github.com/stretchr/testify/assert"
 	"testing"
 )
 
 func TestNewQueueIntLinkedList(t *testing.T) {
 	// Act
-	sut := data.NewQueueIntLinkedList()
+	sut := datastructures.NewQueueIntLinkedList()
 
 	// Assert
 	assert.Zero(t, sut.Length())
@@ -19,7 +19,7 @@ func TestNewQueueIntLinkedList(t *testing.T) {
 
 func TestQueueIntLinkedList_Enqueue(t *testing.T) {
 	// Arrange
-	sut := data.NewQueueIntLinkedList()
+	sut := datastructures.NewQueueIntLinkedList()
 
 	value := 0
 	ok := false
@@ -57,7 +57,7 @@ func TestQueueIntLinkedList_Enqueue(t *testing.T) {
 
 func TestQueueIntLinkedList_Dequeue(t *testing.T) {
 	// Arrange
-	sut := data.NewQueueIntLinkedList()
+	sut := datastructures.NewQueueIntLinkedList()
 
 	value := 0
 	ok := false
@@ -119,7 +119,7 @@ func TestQueueIntLinkedList_Dequeue(t *testing.T) {
 
 func TestQueueIntLinkedList_Peek(t *testing.T) {
 	// Arrange
-	sut := data.NewQueueIntLinkedList()
+	sut := datastructures.NewQueueIntLinkedList()
 
 	value := 0
 	ok := false

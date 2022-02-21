@@ -1,7 +1,7 @@
-package data_test
+package datastructures_test
 
 import (
-	"algorithm-study/internal/data"
+	"algorithm-study/internal/datastructures"
 	"fmt"
 	"github.com/stretchr/testify/assert"
 	"testing"
@@ -9,17 +9,17 @@ import (
 
 func TestNew(t *testing.T) {
 	// Act
-	sut := data.NewIntArray()
+	sut := datastructures.NewIntArray()
 
 	// Assert
 	assert.NotNil(t, sut)
-	assert.Equal(t, "*data.IntArray", fmt.Sprintf("%T", sut))
+	assert.Equal(t, "*datastructures.IntArray", fmt.Sprintf("%T", sut))
 	assert.Zero(t, sut.Len())
 }
 
 func TestIntArray_Push(t *testing.T) {
 	// Arrange
-	sut := data.NewIntArray()
+	sut := datastructures.NewIntArray()
 
 	// Act
 	sut.Push(0)
@@ -32,7 +32,7 @@ func TestIntArray_Push(t *testing.T) {
 
 func TestIntArray_PushFront(t *testing.T) {
 	// Arrange
-	sut := data.NewIntArray()
+	sut := datastructures.NewIntArray()
 
 	// Act
 	sut.Push(0)
@@ -45,7 +45,7 @@ func TestIntArray_PushFront(t *testing.T) {
 
 func TestIntArray_Pop(t *testing.T) {
 	// Arrange
-	sut := data.NewIntArray()
+	sut := datastructures.NewIntArray()
 
 	// Act
 	sut.Push(0)
@@ -61,7 +61,7 @@ func TestIntArray_Pop(t *testing.T) {
 
 func TestIntArray_PopFront(t *testing.T) {
 	// Arrange
-	sut := data.NewIntArray()
+	sut := datastructures.NewIntArray()
 
 	// Act
 	sut.Push(10)

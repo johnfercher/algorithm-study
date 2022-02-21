@@ -1,4 +1,4 @@
-package data
+package datastructures
 
 import "fmt"
 
@@ -124,6 +124,97 @@ func (s *BinaryIntSearchTree) Exists(value int) bool {
 
 func (s *BinaryIntSearchTree) Print() {
 	s.root.Print()
+}
+
+func (s *BinaryIntSearchTree) BreadthFirstSearch() []int {
+	var list []int
+	var queue []*IntNode
+
+	currentNode := s.root
+	queue = append(queue, currentNode)
+
+	for len(queue) > 0 {
+		currentNode := queue[0]
+		list = append(list, currentNode.Value)
+		queue = queue[1:]
+
+		if currentNode.Left != nil {
+			queue = append(queue, currentNode.Left)
+		}
+
+		if currentNode.Right != nil {
+			queue = append(queue, currentNode.Right)
+		}
+	}
+
+	return list
+}
+
+func (s *BinaryIntSearchTree) DepthFirstSearchInOrder() []int {
+	list := s.transverseInOrder(s.root)
+	return list
+}
+
+func (s *BinaryIntSearchTree) DepthFirstSearchPreOrder() []int {
+	list := s.transversePreOrder(s.root)
+	return list
+}
+
+func (s *BinaryIntSearchTree) DepthFirstSearchPostOrder() []int {
+	list := s.transversePostOrder(s.root)
+	return list
+}
+
+func (s *BinaryIntSearchTree) transverseInOrder(node *IntNode) []int {
+	var list []int
+	if node.Left != nil {
+		innerLeftList := s.transverseInOrder(node.Left)
+		list = append(list, innerLeftList...)
+	}
+
+	list = append(list, node.Value)
+
+	if node.Right != nil {
+		innerRightList := s.transverseInOrder(node.Right)
+		list = append(list, innerRightList...)
+	}
+
+	return list
+}
+
+func (s *BinaryIntSearchTree) transversePreOrder(node *IntNode) []int {
+	var list []int
+	list = append(list, node.Value)
+
+	if node.Left != nil {
+		innerLeftList := s.transversePreOrder(node.Left)
+		list = append(list, innerLeftList...)
+	}
+
+	if node.Right != nil {
+		innerRightList := s.transversePreOrder(node.Right)
+		list = append(list, innerRightList...)
+	}
+
+	return list
+}
+
+func (s *BinaryIntSearchTree) transversePostOrder(node *IntNode) []int {
+	var list []int
+
+	if node.Left != nil {
+		innerLeftList := s.transversePostOrder(node.Left)
+		list = append(list, innerLeftList...)
+	}
+
+	if node.Right != nil {
+		innerRightList := s.transversePostOrder(node.Right)
+		list = append(list, innerRightList...)
+	}
+
+	list = append(list, node.Value)
+
+	return list
 }
 
 func (s *BinaryIntSearchTree) removeNodeFromBranch(node *IntNode) {
