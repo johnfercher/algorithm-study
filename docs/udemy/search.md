@@ -33,3 +33,9 @@
    * DFS
 6. Encontrar o menor caminho
    * BFS
+
+## Dijkstra x Bellman-Ford
+* Possibilita encontrar o menor caminho em um grafo com pesos nas arestas.
+* Dijkstra não suporta valores negativos, Bellman suporta
+* Dijkstra é um pouco melhor do que Bellman em relação a tempo
+* BFS e DFS não levam em consideração pesos nas arestas
