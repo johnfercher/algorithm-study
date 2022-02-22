@@ -11,3 +11,4 @@
 6. [Recursion](udemy/recursion.md)
 7. [Sorts](udemy/sorts.md)
 8. [Search](udemy/search.md)
+9. [Dynamic Programming](udemy/dynamic.md)
