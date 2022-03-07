@@ -1,8 +1,7 @@
 package sort
 
 func InsertionInt(arr []int, orderDesc bool) []int {
-	final := arr
-	length := len(final)
+	length := len(arr)
 
 	condition := lessThan
 	if orderDesc {
@@ -11,11 +10,11 @@ func InsertionInt(arr []int, orderDesc bool) []int {
 
 	for i := 0; i < length; i++ {
 		for j := i; j > 0; j-- {
-			if condition(final[j-1], final[j]) {
-				final[j], final[j-1] = final[j-1], final[j]
+			if condition(arr[j-1], arr[j]) {
+				arr[j-1], arr[j] = arr[j], arr[j-1]
 			}
 		}
 	}
 
-	return final
+	return arr
 }

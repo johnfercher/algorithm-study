@@ -1,8 +1,7 @@
 package sort
 
 func SelectionInt(arr []int, orderDesc bool) []int {
-	final := arr
-	length := len(final)
+	length := len(arr)
 
 	condition := lessThan
 	if orderDesc {
@@ -10,17 +9,17 @@ func SelectionInt(arr []int, orderDesc bool) []int {
 	}
 
 	for i := 0; i < length; i++ {
-		minValue := final[i]
-		minIndex := i
+		conditionValue := arr[i]
+		conditionIndex := i
 		for j := i + 1; j < length; j++ {
-			if condition(minValue, final[j]) {
-				minValue = final[j]
-				minIndex = j
+			if condition(conditionValue, arr[j]) {
+				conditionValue = arr[j]
+				conditionIndex = j
 			}
 		}
 
-		final[i], final[minIndex] = final[minIndex], final[i]
+		arr[i], arr[conditionIndex] = arr[conditionIndex], arr[i]
 	}
 
-	return final
+	return arr
 }
