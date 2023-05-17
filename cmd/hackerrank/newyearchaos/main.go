@@ -18,28 +18,21 @@ func minimumBribes(q []int32) {
 		return
 	}
 
-	bribers := make(map[int32]int)
-
-	// O(N^2)
-	for i := 0; i < len(q); i++ {
-		for j := i; j < len(q); j++ {
-			if q[i] > q[j] {
-				bribers[q[i]] = bribers[q[i]] + 1
-				q[i], q[j] = q[j], q[i]
-			}
-		}
-	}
-
-	// O(n log n)?
-
 	bribes := 0
 
-	for _, b := range bribers {
-		if b > 2 {
-			fmt.Println("Too chaotic")
-			return
+	for i := int32(len(q)) - 1; i > 0; i-- {
+		if q[i] != i+1 {
+			if q[i-1] == i+1 {
+				bribes += 1
+				q[i-1], q[i] = q[i], q[i-1]
+			} else if q[i-2] == i+1 {
+				bribes += 2
+				q[i-2], q[i-1], q[i] = q[i-1], q[i], q[i-2]
+			} else {
+				fmt.Println("Too chaotic")
+				return
+			}
 		}
-		bribes += b
 	}
 
 	fmt.Println(bribes)
@@ -47,9 +40,9 @@ func minimumBribes(q []int32) {
 
 func main() {
 	//array := []int32{2}
-	//array := []int32{2, 1, 5, 3, 4}
+	array := []int32{2, 1, 5, 3, 4}
 	//array := []int32{2, 5, 1, 3, 4}
-	array := []int32{1, 2, 5, 3, 7, 8, 6, 4}
+	//array := []int32{1, 2, 5, 3, 7, 8, 6, 4}
 	minimumBribes(array)
 }
 
